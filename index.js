@@ -18,11 +18,13 @@ program
   .option('-e, --export [filename]', 'Exporter l\'arborescence (par défaut: TREE.md)')
   .option('-f, --force', 'Écraser le fichier d\'export sans confirmation')
   .option('-t, --theme <name>', 'Thème (ascii, emoji, minimalist)', 'ascii')
+  .option('-L, --depth <number>', 'Limiter la profondeur (0 = illimité)', '0')
   .option('--no-defaults', 'Ne pas utiliser la liste d\'exclusion par défaut')
   .parse(process.argv);
 
 const options = program.opts();
 const targetDir = resolve(options.dir);
+const maxDepth = Math.max(0, parseInt(options.depth, 10) || 0);
 
 if (!existsSync(targetDir)) {
     console.error(chalk.red.bold(`\nErreur : Le répertoire "${targetDir}" n'existe pas.\n`));
@@ -62,7 +64,8 @@ async function main() {
   const treeOptions = {
     theme: THEMES[options.theme],
     ignoreList,
-    chalk
+    chalk,
+    maxDepth
   };
 
   const lines = generateTreeLines(targetDir, treeOptions);
