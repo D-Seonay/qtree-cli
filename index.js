@@ -31,7 +31,7 @@ if (!existsSync(targetDir)) {
     process.exit(1);
 }
 
-// Validation du thème
+// Theme validation
 if (!THEMES[options.theme]) {
   console.error(chalk.red.bold(`\nError: Theme "${options.theme}" does not exist. Choices: ${Object.keys(THEMES).join(', ')}\n`));
   process.exit(1);
