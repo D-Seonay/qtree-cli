@@ -74,30 +74,5 @@ secret_file.txt
 
 By default, QTree combines the default list, your `.gitignore`, and your `.quicktreeignore`. Use `--no-defaults` to use only your own exclusion files.
 
-## 🤖 AI & LLM Integration
-
-QTree is designed to be an excellent tool for providing project context to Large Language Models (LLMs) like ChatGPT, Claude, or Gemini.
-
-### Providing Context
-When asking an AI to help with your code, providing a clear directory structure is crucial. Use `qtree` to generate a clean, text-based overview of your project.
-
-**Copy-Paste Prompt Template:**
-> I am working on a project with the following structure:
-> 
-> [Insert output of 'qtree -L 2' here]
-> 
-> Based on this structure, please help me with [Task]...
-
-### Tips for AI Workflows
-- **Depth Limiting**: Use `-L 2` or `-L 3` to avoid overwhelming the AI with deep `node_modules` or build artifacts. This keeps the focus on your core architecture.
-- **Emoji Theme**: The `--theme emoji` helps some LLMs better distinguish between directories (📁) and files (📄) visually.
-- **Clean Export**: Use `--export context.md` to get a file without ANSI color codes, ready to be attached or pasted into a prompt.
-
----
-
-## 🚀 Contribution Workflow
-
-See the `GEMINI.md` file for contribution instructions.
-
 ## 📄 License
 ISC

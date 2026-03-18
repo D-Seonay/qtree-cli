@@ -73,12 +73,5 @@ secret_file.txt
 
 Par défaut, QTree cumule la liste par défaut, votre `.gitignore` et votre `.quicktreeignore`. Utilisez `--no-defaults` pour n'utiliser que vos propres fichiers d'exclusion.
 
-
----
-
-## 🚀 Workflow de Contribution
-
-Consultez le fichier `GEMINI.md` pour les instructions de contribution.
-
 ## 📄 Licence
 ISC
