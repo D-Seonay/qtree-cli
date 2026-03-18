@@ -65,3 +65,27 @@ test('generateTreeLines produces correct structure with emoji theme', () => {
 
   rmSync(TMP_DIR, { recursive: true, force: true });
 });
+
+test('generateTreeLines respects maxDepth of 1', () => {
+  if (existsSync(TMP_DIR)) rmSync(TMP_DIR, { recursive: true, force: true });
+  mkdirSync(TMP_DIR, { recursive: true });
+  mkdirSync(join(TMP_DIR, 'dir1'));
+  mkdirSync(join(TMP_DIR, 'dir1', 'sub-dir'));
+  writeFileSync(join(TMP_DIR, 'file1.txt'), 'hello');
+
+  const options = {
+    theme: THEMES.ascii,
+    ignoreList: [],
+    chalk: mockChalk,
+    maxDepth: 1
+  };
+
+  const lines = generateTreeLines(TMP_DIR, options);
+  
+  // Should show dir1 and file1.txt, but NOT sub-dir
+  assert.strictEqual(lines.length, 2);
+  assert.strictEqual(lines[0], '├── BLUE_BOLD(dir1)');
+  assert.strictEqual(lines[1], '└── GREEN(file1.txt)');
+
+  rmSync(TMP_DIR, { recursive: true, force: true });
+});
