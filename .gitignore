@@ -29,3 +29,5 @@ coverage/
 
 # Worktrees
 .worktrees/
+
+GEMINI.md.worktrees/
