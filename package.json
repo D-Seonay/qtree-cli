@@ -1,13 +1,18 @@
 {
   "name": "quicktree-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A project tree generator for README files.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "node --test tests/*.test.js"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "tree",
+    "generator",
+    "readme"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",
