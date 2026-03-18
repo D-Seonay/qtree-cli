@@ -11,7 +11,7 @@ import { writeFileSync } from 'node:fs';
 const program = new Command();
 
 program
-  .name('quicktree')
+  .name('qtree')
   .version('1.0.0')
   .description('Générateur d\'arborescence de projet pour README')
   .option('-d, --dir <type>', 'Répertoire à scanner', '.')

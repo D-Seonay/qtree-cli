@@ -16,6 +16,6 @@
     "commander": "^14.0.3"
   },
   "bin": {
-    "quicktree": "./index.js"
+    "qtree": "./index.js"
   }
 }

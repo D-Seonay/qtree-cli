@@ -1,4 +1,4 @@
-# 🌳 QuickTree CLI
+# 🌳 QTree CLI
 
 Générateur d'arborescence de projet simple et élégant pour vos fichiers README.
 
@@ -7,9 +7,9 @@ Générateur d'arborescence de projet simple et élégant pour vos fichiers READ
 - 🚀 Rapide et léger (zéro dépendance lourde)
 - 🎨 Sortie colorée dans le terminal
 - 📁 Dossiers en gras/bleu, fichiers en vert
-- 🧹 Ignore automatiquement les dossiers inutiles (`node_modules`, `.git`, etc.)
+- 🧹 Ignore automatiquement les dossiers inutiles (`node_modules`, `.git`, `.worktrees`, etc.)
 - 💾 Export direct vers un fichier (ex: `TREE.md`)
-- 🎭 Plusieurs thèmes (ASCII, Emoji, Minimaliste)
+- 🎭 Plusieurs thèmes (ASCII, Emoji, Minimalist)
 - 🛠️ Support de `.gitignore` et `.quicktreeignore`
 
 ## 🚀 Installation
@@ -22,7 +22,7 @@ npm install -g quicktree-cli
 
 ### Commande de base
 ```bash
-quicktree
+qtree
 ```
 
 ### Options disponibles
@@ -39,17 +39,17 @@ quicktree
 
 **Scanner un dossier spécifique :**
 ```bash
-quicktree --dir src/
+qtree --dir src/
 ```
 
 **Utiliser le thème Emoji :**
 ```bash
-quicktree --theme emoji
+qtree --theme emoji
 ```
 
 **Exporter l'arborescence :**
 ```bash
-quicktree --export MY_PROJECT_TREE.md
+qtree --export MY_PROJECT_TREE.md
 ```
 
 ## 🛠️ Configuration de l'exclusion
@@ -63,7 +63,8 @@ private_folder
 secret_file.txt
 ```
 
-Par défaut, QuickTree cumule la liste par défaut, votre `.gitignore` et votre `.quicktreeignore`. Utilisez `--no-defaults` pour n'utiliser que vos propres fichiers d'exclusion.
+Par défaut, QTree cumule la liste par défaut, votre `.gitignore` et votre `.quicktreeignore`. Utilisez `--no-defaults` pour n'utiliser que vos propres fichiers d'exclusion.
+
 
 ---
 
