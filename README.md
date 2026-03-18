@@ -1,16 +1,19 @@
+[Français (README-fr.md)](README-fr.md)
+
 # 🌳 QTree CLI
 
-Générateur d'arborescence de projet simple et élégant pour vos fichiers README.
+A simple and elegant project tree generator for your README files.
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-- 🚀 Rapide et léger (zéro dépendance lourde)
-- 🎨 Sortie colorée dans le terminal
-- 📁 Dossiers en gras/bleu, fichiers en vert
-- 🧹 Ignore automatiquement les dossiers inutiles (`node_modules`, `.git`, `.worktrees`, etc.)
-- 💾 Export direct vers un fichier (ex: `TREE.md`)
-- 🎭 Plusieurs thèmes (ASCII, Emoji, Minimalist)
-- 🛠️ Support de `.gitignore` et `.quicktreeignore`
+- 🚀 Fast and lightweight (zero heavy dependencies)
+- 🎨 Colored output in the terminal
+- 📁 Folders in bold/blue, files in green
+- 🧹 Automatically ignores unnecessary folders (`node_modules`, `.git`, `.worktrees`, etc.)
+- 💾 Direct export to a file (e.g., `TREE.md`)
+- 🎭 Multiple themes (ASCII, Emoji, Minimalist)
+- 🛠️ Support for `.gitignore` and `.quicktreeignore`
+- 📏 Depth limit control (`-L, --depth`)
 
 ## 🚀 Installation
 
@@ -20,63 +23,81 @@ npm install -g quicktree-cli
 
 ## 📖 Usage
 
-### Commande de base
+### Basic Command
 ```bash
 qtree
 ```
 
-### Options disponibles
+### Options
 
-| Option | Alias | Description | Par défaut |
-|--------|-------|-------------|------------|
-| `--dir` | `-d` | Répertoire à scanner | `.` |
-| `--export` | `-e` | Exporter dans un fichier | `TREE.md` |
-| `--force` | `-f` | Écraser le fichier d'export sans confirmation | `false` |
-| `--theme` | `-t` | Thème (`ascii`, `emoji`, `minimalist`) | `ascii` |
-| `--depth` | `-L` | Limiter la profondeur (0 = illimité) | `0` |
-| `--no-defaults` | | Ne pas utiliser la liste d'exclusion par défaut | `false` |
+| Option | Alias | Description | Default |
+|--------|-------|-------------|---------|
+| `--dir` | `-d` | Directory to scan | `.` |
+| `--export` | `-e` | Export to a file | `TREE.md` |
+| `--force` | `-f` | Overwrite export file without confirmation | `false` |
+| `--theme` | `-t` | Theme (`ascii`, `emoji`, `minimalist`) | `ascii` |
+| `--depth` | `-L` | Limit depth (0 = unlimited) | `0` |
+| `--no-defaults` | | Do not use the default exclusion list | `false` |
 
-### Exemples
+### Examples
 
-**Scanner un dossier spécifique :**
+**Scan a specific directory:**
 ```bash
 qtree --dir src/
 ```
 
-**Utiliser le thème Emoji :**
+**Use the Emoji theme:**
 ```bash
 qtree --theme emoji
 ```
 
-**Limiter la profondeur à 2 niveaux :**
+**Limit depth to 2 levels:**
 ```bash
 qtree -L 2
 ```
 
-**Exporter l'arborescence :**
+**Export the tree:**
 ```bash
 qtree --export MY_PROJECT_TREE.md
 ```
 
-## 🛠️ Configuration de l'exclusion
+## 🛠️ Exclusion Configuration
 
 ### `.quicktreeignore`
-Vous pouvez créer un fichier `.quicktreeignore` à la racine de votre projet pour exclure des fichiers ou dossiers spécifiques. Chaque ligne correspond à un nom exact de fichier ou dossier.
+You can create a `.quicktreeignore` file in your project root to exclude specific files or folders. Each line corresponds to an exact file or folder name.
 
 ```text
-# Mon ignore personnalisé
+# My custom ignore list
 private_folder
 secret_file.txt
 ```
 
-Par défaut, QTree cumule la liste par défaut, votre `.gitignore` et votre `.quicktreeignore`. Utilisez `--no-defaults` pour n'utiliser que vos propres fichiers d'exclusion.
+By default, QTree combines the default list, your `.gitignore`, and your `.quicktreeignore`. Use `--no-defaults` to use only your own exclusion files.
 
+## 🤖 AI & LLM Integration
+
+QTree is designed to be an excellent tool for providing project context to Large Language Models (LLMs) like ChatGPT, Claude, or Gemini.
+
+### Providing Context
+When asking an AI to help with your code, providing a clear directory structure is crucial. Use `qtree` to generate a clean, text-based overview of your project.
+
+**Copy-Paste Prompt Template:**
+> I am working on a project with the following structure:
+> 
+> [Insert output of 'qtree -L 2' here]
+> 
+> Based on this structure, please help me with [Task]...
+
+### Tips for AI Workflows
+- **Depth Limiting**: Use `-L 2` or `-L 3` to avoid overwhelming the AI with deep `node_modules` or build artifacts. This keeps the focus on your core architecture.
+- **Emoji Theme**: The `--theme emoji` helps some LLMs better distinguish between directories (📁) and files (📄) visually.
+- **Clean Export**: Use `--export context.md` to get a file without ANSI color codes, ready to be attached or pasted into a prompt.
 
 ---
 
-## 🚀 Workflow de Contribution
+## 🚀 Contribution Workflow
 
-Consultez le fichier `GEMINI.md` pour les instructions de contribution.
+See the `GEMINI.md` file for contribution instructions.
 
-## 📄 Licence
+## 📄 License
 ISC
