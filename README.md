@@ -33,6 +33,7 @@ qtree
 | `--export` | `-e` | Exporter dans un fichier | `TREE.md` |
 | `--force` | `-f` | Écraser le fichier d'export sans confirmation | `false` |
 | `--theme` | `-t` | Thème (`ascii`, `emoji`, `minimalist`) | `ascii` |
+| `--depth` | `-L` | Limiter la profondeur (0 = illimité) | `0` |
 | `--no-defaults` | | Ne pas utiliser la liste d'exclusion par défaut | `false` |
 
 ### Exemples
@@ -45,6 +46,11 @@ qtree --dir src/
 **Utiliser le thème Emoji :**
 ```bash
 qtree --theme emoji
+```
+
+**Limiter la profondeur à 2 niveaux :**
+```bash
+qtree -L 2
 ```
 
 **Exporter l'arborescence :**
