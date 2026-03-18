@@ -1,5 +1,3 @@
-[Français (README-fr.md)](README-fr.md)
-
 # 🌳 QTree CLI
 
 A simple and elegant project tree generator for your README files.
