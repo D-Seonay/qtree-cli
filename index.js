@@ -13,13 +13,13 @@ const program = new Command();
 program
   .name('qtree')
   .version('1.0.0')
-  .description('Générateur d\'arborescence de projet pour README')
-  .option('-d, --dir <type>', 'Répertoire à scanner', '.')
-  .option('-e, --export [filename]', 'Exporter l\'arborescence (par défaut: TREE.md)')
-  .option('-f, --force', 'Écraser le fichier d\'export sans confirmation')
-  .option('-t, --theme <name>', 'Thème (ascii, emoji, minimalist)', 'ascii')
-  .option('-L, --depth <number>', 'Limiter la profondeur (0 = illimité)', '0')
-  .option('--no-defaults', 'Ne pas utiliser la liste d\'exclusion par défaut')
+  .description('A project tree generator for README files')
+  .option('-d, --dir <type>', 'Directory to scan', '.')
+  .option('-e, --export [filename]', 'Export the tree (default: TREE.md)')
+  .option('-f, --force', 'Overwrite the export file without confirmation')
+  .option('-t, --theme <name>', 'Theme (ascii, emoji, minimalist)', 'ascii')
+  .option('-L, --depth <number>', 'Limit the depth (0 = unlimited)', '0')
+  .option('--no-defaults', 'Do not use the default exclusion list')
   .parse(process.argv);
 
 const options = program.opts();
@@ -27,13 +27,13 @@ const targetDir = resolve(options.dir);
 const maxDepth = Math.max(0, parseInt(options.depth, 10) || 0);
 
 if (!existsSync(targetDir)) {
-    console.error(chalk.red.bold(`\nErreur : Le répertoire "${targetDir}" n'existe pas.\n`));
+    console.error(chalk.red.bold(`\nError: Directory "${targetDir}" does not exist.\n`));
     process.exit(1);
 }
 
 // Validation du thème
 if (!THEMES[options.theme]) {
-  console.error(chalk.red.bold(`\nErreur : Le thème "${options.theme}" n'existe pas. Choix possibles : ${Object.keys(THEMES).join(', ')}\n`));
+  console.error(chalk.red.bold(`\nError: Theme "${options.theme}" does not exist. Choices: ${Object.keys(THEMES).join(', ')}\n`));
   process.exit(1);
 }
 
@@ -41,25 +41,25 @@ async function handleExport(filename, content, force) {
   const exportFile = typeof filename === 'string' ? filename : 'TREE.md';
   if (existsSync(exportFile) && !force) {
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-    const answer = await rl.question(chalk.yellow(`${exportFile} existe déjà. Écraser ? (y/N) `));
+    const answer = await rl.question(chalk.yellow(`${exportFile} already exists. Overwrite? (y/N) `));
     rl.close();
     if (answer.toLowerCase() !== 'y') {
-      console.log(chalk.cyan('Export annulé.'));
+      console.log(chalk.cyan('Export canceled.'));
       return;
     }
   }
   try {
     writeFileSync(exportFile, stripAnsi(content));
-    console.log(chalk.green(`\nArborescence exportée dans : ${exportFile}`));
+    console.log(chalk.green(`\nTree exported to: ${exportFile}`));
   } catch (err) {
-    console.error(chalk.red.bold(`\nErreur lors de l'export : ${err.message}`));
+    console.error(chalk.red.bold(`\nError during export: ${err.message}`));
   }
 }
 
 async function main() {
   const ignoreList = getIgnoreList(targetDir, options.defaults);
   
-  console.log(chalk.yellow.bold(`\nArborescence de : ${targetDir}\n`));
+  console.log(chalk.yellow.bold(`\nTree for: ${targetDir}\n`));
   
   const treeOptions = {
     theme: THEMES[options.theme],
@@ -72,7 +72,7 @@ async function main() {
   const treeContent = lines.join('\n');
   
   console.log(treeContent);
-  console.log(chalk.yellow.bold('\nPrêt pour le README ! 🚀'));
+  console.log(chalk.yellow.bold('\nReady for README! 🚀'));
 
   if (options.export !== undefined) {
     await handleExport(options.export, treeContent, options.force);
